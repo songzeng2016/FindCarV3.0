@@ -1,0 +1,19 @@
+
+
+
+<view class="content" style="margin-top:50px;"><view> {{detail}}</view><view>{{dijkl}}</view><view>{{baoMa}}</view><view>{{beiZhun}}</view><view>{{lianXiRen}}</view><view>{{dianHua}}</view></view>
+
+<!--<view class="resultNote">处理结果 <label style="color:#ffaa00">{{resultNote}}</label></view>
+<view wx:if="{{isDeal}}" class="content" style="margin-top:0px;">{{result}}</view>-->
+<!--分享按钮-->
+<!--/*按钮图片*/-->
+<view>
+<image class="userinfo-avatar" catchtap="ButtImage" mode="aspectFill" src="../icon/APP.png"></image>
+</view>
+
+<!--/*按钮图片*/-->
+<view>
+<image class="userinfo-zhang" catchtap="long" mode="aspectFill" src="../icon/MyInformation.png"></image>
+</view>
+
+<button class="fenXiang" bindtap="share">分享</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

@@ -1,0 +1,10 @@
+<!--HomePage/apply/apply.wxml-->
+<form class="list-wrapper">
+  <view class="list" wx:for="{{list}}" wx:key="this">
+    <text class="desc">{{item.desc}}</text>
+    <input class="input" name="{{item.name}}" type="{{item.Type || 'text'}}" placeholder="{{item.holder}}" />
+  </view>
+  <view class="list">
+    <button class="submit" type="submit">提交审核</button>
+  </view>
+</form>
