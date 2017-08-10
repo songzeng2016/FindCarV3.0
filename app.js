@@ -1,3 +1,5 @@
+import wc from '/utils/util.js'
+
 //app.js
 App({
   onLaunch: function () {
@@ -26,5 +28,6 @@ App({
   },
   globalData:{
     userInfo:null
-  }
+  },
+  wc: new wc()
 })

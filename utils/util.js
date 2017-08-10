@@ -1,21 +1,40 @@
-function formatTime(date) {
-  var year = date.getFullYear()
-  var month = date.getMonth() + 1
-  var day = date.getDate()
 
-  var hour = date.getHours()
-  var minute = date.getMinutes()
-  var second = date.getSeconds()
+const HOST = 'http://demo.icarplus.net/api.php'
+const M = { m: 'ApiFindCar' }
 
+class wc {
+  constructor() {
+    this.host = HOST
+  }
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  get(data, success) {
+    wx.request({
+      url: this.host,
+      data: this.extend(M, data || {}),
+      success: function (res) {
+        typeof (success) === 'function' && success(res.data)
+      }
+    })
+  }
+
+  showLoading() {
+    wx.showLoading({
+      title: 'loading',
+      mask: true
+    })
+  }
+
+  hideLoding() {
+    wx.hideLoading()
+  }
+
+  // 扩展json
+  extend(destination, source) {
+    for (var property in source) {
+      destination[property] = source[property];
+    }
+    return destination
+  }
 }
 
-function formatNumber(n) {
-  n = n.toString()
-  return n[1] ? n : '0' + n
-}
-
-module.exports = {
-  formatTime: formatTime
-}
+export default wc

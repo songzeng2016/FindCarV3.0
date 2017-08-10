@@ -102,6 +102,10 @@ Page({
     // wx.showShareMenu({
     //   withShareTicket: true
     // })
+
+    wx.request({
+      url: 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=getShareInfo& input={"company_no":"tkpqoa1444904442"}',
+    })
   },
 
   /**

@@ -11,7 +11,7 @@ Page({
                 'Car6.png', 'Car7.png'],
     carInfo: [
       {
-        src: '',
+        src: 'Car1.png',
         info: '16年 1.4L polo'
       },
       {
@@ -66,6 +66,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    wx.request({
+      url: 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=getMyCar& input={"company_no":"tkpqoa1444904442"}',
+      success: function(res){
+
+      }
+    })
 
   },
 
