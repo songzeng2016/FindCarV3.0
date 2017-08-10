@@ -29,5 +29,6 @@ App({
   globalData:{
     userInfo:null
   },
-  wc: new wc()
+  wc: new wc(),
+  companyNo: 'wyfghl1498008482'
 })

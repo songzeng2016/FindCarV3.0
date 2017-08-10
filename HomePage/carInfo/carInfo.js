@@ -1,4 +1,7 @@
 // HomePage/carInfo/carInfo.js
+const app = getApp()
+const { wc, companyNo } = app
+const { imgUrl, data, code, success } = wc
 Page({
 
   /**
@@ -8,7 +11,7 @@ Page({
     showSelect: false,
     currentCar: 0,
     selectCar: ['Car1.png', 'Car2.png', 'Car3.png', 'Car4.png', 'Car5.png',
-                'Car6.png', 'Car7.png'],
+      'Car6.png', 'Car7.png'],
     carInfo: [
       {
         src: 'Car1.png',
@@ -66,14 +69,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const that = this
+    let getMyCarData = {
+      a: 'getMyCar',
+      input: {
+        company_no: companyNo
+      }
+    }
 
-    wx.request({
-      url: 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=getMyCar& input={"company_no":"tkpqoa1444904442"}',
-      success: function(res){
-
+    wc.get(getMyCarData, (json) => {
+      if (json[code] === success) {
+        for (let i in json[data].car_list) {
+          if (!!json[data].car_list[i].car_img) {
+            json[data].car_list[i].car_img = imgUrl + json[data].car_list[i].car_img
+          }
+        }
+        that.setData({
+          carInfo: json[data].car_list,
+          remark: json[data].remark
+        })
       }
     })
-
   },
 
   /**

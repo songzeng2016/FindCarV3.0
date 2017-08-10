@@ -1,22 +1,24 @@
 <!--车咖logo图片-->
-<image class="logo"  src="../icon/log.jpg"></image>
-<view class="form">
+<image class="logo" src="../icon/log.jpg"></image>
+<form bindsubmit="login">
+  <view class="form">
     <!--表单第一行  用户手机号-->
     <view class="row">
-        <image class="icon" src="../icon/user.png"></image>
-        <input placeholder="请输入手机号" placeholder-class="input-placeholder" bindinput="getMobileTap" type="number" value="{{mobile}}" maxlength="11"/>
+      <image class="icon" src="../icon/user.png"></image>
+      <input name="phone" placeholder="请输入手机号" placeholder-class="input-placeholder" bindinput="getMobileTap" type="number" value="{{mobile}}" maxlength="11" />
     </view>
     <view class="line"></view>
     <!--表单第二行  用户密码-->
     <view class="row">
-        <image class="icon" src="../icon/psw.png"></image>
-        <input placeholder="确认密码" placeholder-class="input-placeholder" bindinput="getPSWTap" password value="{{password}}"/>
+      <image class="icon" src="../icon/psw.png"></image>
+      <input name="password" placeholder="确认密码" placeholder-class="input-placeholder" bindinput="getPSWTap" password value="{{password}}" />
     </view>
-</view>
-<!--免费注册文字-->
-<view class="free-register" bindtap="gotoRegisterTap">我要注册</view>
-<!--登录按钮-->
-<button bindtap="login">登录</button>
+  </view>
+  <!--免费注册文字-->
+  <view class="free-register" bindtap="gotoRegisterTap">我要注册</view>
+  <!--登录按钮-->
+  <button form-type="submit">登录</button>
+</form>
 <!--错误提示框-->
 <view class="error" wx:if="{{errorDisplay}}">{{errorTxt}}</view>
 <view class="loGomn"></view>

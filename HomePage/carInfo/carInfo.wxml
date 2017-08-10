@@ -3,8 +3,8 @@
   <view class="carInfo-wrapper">
     <view class="title">车型信息配置</view>
     <view class="carInfo-list" wx:for="{{carInfo}}" wx:key="this" wx:for-index="index">
-      <image class="select {{item.src && 'selected'}}" src="{{item.src ? '/Images/' + item.src: '/Images/huiButto.png'}}" bindtap="changeCar" data-index="{{index}}"></image>
-      <input class="name" value="{{item.info}}" placeholder="例如" />
+      <image class="select {{(item.src || item.car_img) && 'selected'}}" src="{{item.src ? '/Images/' + item.src : item.car_img || '/Images/huiButto.png'}}" bindtap="changeCar" data-index="{{index}}"></image>
+      <input class="name" value="{{item.carname}}" placeholder="例如" />
       <image class="delete" src="/Images/CunWu.png" bindtap="deleteCar" data-index="{{index}}"></image>
     </view>
     <view class="add-wrapper">
@@ -14,7 +14,7 @@
 
   <view class="remark">
     <text class="title">备注</text>
-    <textarea class="memo" value="测试" />
+    <textarea class="memo" value="{{remark}}" />
   </view>
 
   <button class="submit">保存</button>
