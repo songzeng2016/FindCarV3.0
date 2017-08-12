@@ -2,6 +2,7 @@
 const app = getApp()
 const { wc, companyNo } = app
 const { imgUrl, data, code, success } = wc
+
 Page({
 
   /**
@@ -18,14 +19,16 @@ Page({
   submitCarInfo: function () {
     let carInfo = this.data.carInfo
     let remark = this.data.remark
-    console.log(carInfo)
-    console.log(remark)
-
     let carName = {
       maxrow: carInfo.length
     }
     for (let i in carInfo) {
       carName['carname_' + (parseInt(i) + 1)] = carInfo[i].carname
+      if (!!carInfo[i].src) {
+        carName['car_img_' + (parseInt(i) + 1)] = 'car_' + carInfo[i].src.substring(3)
+      } else {
+        carName['car_img_' + (parseInt(i) + 1)] = carInfo[i].car_img.split('/')[carInfo[i].car_img.split('/').length - 1]
+      }
     }
 
     let changeCarData = {
@@ -55,7 +58,10 @@ Page({
 
   addCar: function () {
     let carInfo = this.data.carInfo
-    carInfo.push({})
+    carInfo.push({
+      carname: '',
+      car_img: ''
+    })
     this.setData({ carInfo })
   },
   deleteCar: function (e) {

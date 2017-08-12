@@ -1,6 +1,6 @@
 const app = getApp()
 const wc = app.wc
-const {data, code, success} = wc
+const { data, code, success } = wc
 Page({
 
   // 事件处理函数
@@ -21,14 +21,21 @@ Page({
     let loginData = {
       a: 'login',
       input: {
-        account: 'test3',
-        password: '123456'
+        account: phone,
+        password: password
       }
     }
+    // let loginData = {
+    //   a: 'login',
+    //   input: {
+    //     account: 'test3',
+    //     password: '123456'
+    //   }
+    // }
     wc.get(loginData, (json) => {
+      wc.hideLoding()
       if (json[code] === success) {
         app.companyNo = json[data].company_no
-        wc.hideLoding()
         wx.switchTab({
           url: '/HomePage/ZhaoCar/ZhaoCar'
         })
