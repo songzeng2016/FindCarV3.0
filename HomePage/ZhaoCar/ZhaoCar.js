@@ -8,76 +8,11 @@
 // var dianHua = ''
 
 const app = getApp()
-const wc = app.wc
-const { data, code, success } = wc
+const { wc, companyNo } = app
+const { imgUrl, data, code, success } = wc
 
 Page({
   data: {
-    list: [
-      {
-        carList: [
-          {
-            src: '',
-            info: '蒙迪欧'
-          },
-          {
-            src: 'Car1.png',
-            info: '宝马X6'
-          },
-          {
-            src: '',
-            info: '大众cc 阿斯顿马丁'
-          }
-        ],
-        remark: '热烈欢迎',
-        comInfo: {
-          name: '车咖卡',
-          phone: 15120814794
-        }
-      },
-      {
-        carList: [
-          {
-            src: 'Car3.png',
-            info: '蒙迪欧'
-          },
-          {
-            src: '',
-            info: '宝马X6'
-          },
-          {
-            src: '',
-            info: '大众cc 阿斯顿马丁'
-          }
-        ],
-        remark: '热烈欢迎',
-        comInfo: {
-          name: '车咖卡',
-          phone: 15120814794
-        }
-      },
-      {
-        carList: [
-          {
-            src: '',
-            info: '蒙迪欧'
-          },
-          {
-            src: 'Car1.png',
-            info: '宝马X6'
-          },
-          {
-            src: '',
-            info: '大众cc 阿斯顿马丁'
-          }
-        ],
-        remark: '热烈欢迎',
-        comInfo: {
-          name: '车咖卡',
-          phone: 15120814794
-        }
-      }
-    ]
     // wxSearchData:{
     //   view:{
     //     isShow: true
@@ -85,7 +20,7 @@ Page({
     // }
   },
 
-  makePhone: function(e) {
+  makePhone: function (e) {
     let phone = e.currentTarget.dataset.phone.toString()
     wx.makePhoneCall({
       phoneNumber: phone,
@@ -93,11 +28,34 @@ Page({
   },
 
   onLoad: function () {
+    const that = this
+    let showCarData = {
+      a: 'getShowCar',
+      input: {
+        pagenum: 0,
+        company_no: companyNo
+      }
+    }
 
-    wx.request({
-      url: 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=getShowCar&input={"pagenum":"0","carname":"别克"}',
+    wc.get(showCarData, (json) => {
+      if (json[code] === success) {
+        for (let i in json[data].carlist) {
+          for (let j in json[data].carlist[i].carsinfo) {
+            if (!!json[data].carlist[i].carsinfo[j].car_img) {
+              json[data].carlist[i].carsinfo[j].car_img = imgUrl + json[data].carlist[i].carsinfo[j].car_img
+            }
+          }
+        }
+        that.setData({
+          carList: json[data].carlist
+        })
+      }
     })
-    
+
+    // wx.request({
+    //   url: 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=getShowCar&input={"pagenum":"0","carname":"别克"}',
+    // })
+
 
     //初始化的时候渲染wxSearchdata
     // WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);

@@ -12,18 +12,45 @@ Page({
     currentCar: 0,
     selectCar: ['Car1.png', 'Car2.png', 'Car3.png', 'Car4.png', 'Car5.png',
       'Car6.png', 'Car7.png'],
-    carInfo: [
-      {
-        src: 'Car1.png',
-        info: '16年 1.4L polo'
-      },
-      {
-        info: '奥迪A6'
-      },
-      {
-        info: '宝马'
-      }
-    ]
+    carInfo: []
+  },
+
+  submitCarInfo: function () {
+    let carInfo = this.data.carInfo
+    let remark = this.data.remark
+    console.log(carInfo)
+    console.log(remark)
+
+    let carName = {
+      maxrow: carInfo.length
+    }
+    for (let i in carInfo) {
+      carName['carname_' + (parseInt(i) + 1)] = carInfo[i].carname
+    }
+
+    let changeCarData = {
+      a: 'changeCar',
+      input: wc.extend(carName, {
+        company_no: companyNo,
+        remark
+      })
+    }
+
+    wc.get(changeCarData)
+
+    console.log(changeCarData)
+
+    // 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=changeCar&input={"company_no":"tkpqoa1444904442","maxrow":"3","carname_1":"14年凯美瑞黑色","carname_2":"2015款丰田新款卡罗拉","carname_3":"2016mini敞篷","car_img_1":"car_2.png","car_img_3":"car_5.png","remark":"欢迎来租"}'
+
+  },
+  carNameInput: function (e) {
+    let value = e.detail.value
+    let index = e.currentTarget.dataset.index
+    this.data.carInfo[index].carname = value
+  },
+  remarkInput: function (e) {
+    let value = e.detail.value
+    this.data.remark = value
   },
 
   addCar: function () {
