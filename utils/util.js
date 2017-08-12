@@ -1,6 +1,6 @@
 // 定义常量
-const HOST = 'http://demo.icarplus.net/api.php'
 const IMGURL = 'http://demo.icarplus.net'
+const HOST = `${IMGURL}/api.php`
 const [DATA, CODE, SUCCESSCODE, MESSAGE] = ['data', 'returnCode', '10000', 'returnMsg']
 const M = { m: 'ApiFindCar' }
 

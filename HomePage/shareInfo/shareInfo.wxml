@@ -1,13 +1,4 @@
 <!--HomePage/shareInfo/shareInfo.wxml-->
-
-<!-- <image class="bgImg" src="/同行找车图标/分享展示页.png" bindtap="touchImg"></image> -->
-
-<!-- <image id="{{'bgImg' + index}}" class="bgImg" wx:for="{{bgImg}}" wx:key="this" src="{{'/同行找车图标/' + item}}"></image> -->
-
-<!-- <scroll-view scroll-x="true" scroll-into-view="{{'bgImg' + bgIndex}}" scroll-left="{{bgIndex * 750 + 'rpx'}}" scroll-with-animation="true">
-   <image id="{{'bgImg' + index}}" class="bgImg" wx:for="{{bgImg}}" wx:key="this" src="{{'/Images/' + item}}"></image> 
-</scroll-view>  -->
-
 <view class="bgImg-box">
   <view class="bgImg-wrapper" style="transform: translateX(-{{bgIndex * 50}}%)">
     <image id="{{'bgImg' + index}}" class="bgImg" wx:for="{{bgImg}}" wx:key="this" src="{{'/Images/' + item}}"></image>
@@ -16,9 +7,9 @@
 
 <view class="wrapper" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
   <view class="top-wrapper">
-    <image class="avatar" src="{{info.avatar || '/Images/HeadPortrait.jpg'}}"></image>
+    <image class="avatar" src="{{info.lgSrc || '/Images/HeadPortrait.jpg'}}"></image>
     <view class="carList {{'carList' + bgIndex}}" wx:for="{{info.carList}}" wx:key="this">
-      {{item.info}}
+      {{item.carname}}
     </view>
     <view class="remark carList {{'carList' + bgIndex}}">
       <text>备注：</text>
@@ -28,13 +19,13 @@
   <view class="bottom-wrapper">
     <view class="phone-wrapper {{'phone-wrapper' + bgIndex}}">
       <text class="{{'desc' + bgIndex}}">预定电话：</text>
-      <text class="{{'phone' + bgIndex}}">{{info.comInfo.phone}}</text>
+      <text class="{{'phone' + bgIndex}}">{{info.companyInfo.phone}}</text>
       <image class="phoneImg" src="{{'/Images/' + phoneImg[bgIndex]}}" catchtap="makePhone" data-phone="{{info.comInfo.phone}}"></image>
     </view>
-    <view class="name {{'name' + bgIndex}}">{{info.comInfo.name}}</view>
+    <view class="name {{'name' + bgIndex}}">{{info.companyInfo.name}}</view>
     <view class="link {{'link' + bgIndex}}">
       <text catchtap="moreCar">更多车源</text>
-      <text>我也要分享</text>
+      <text catchtap="myShare">我也要分享</text>
     </view>
   </view>
 </view>

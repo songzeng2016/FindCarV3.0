@@ -1,4 +1,8 @@
 // HomePage/shareInfo/shareInfo.js
+const app = getApp()
+const { wc, companyNo } = app
+const { imgUrl, data, code, success } = wc
+
 Page({
 
   /**
@@ -8,28 +12,7 @@ Page({
     bgImg: ['beij.png', 'beiji.jpg'],
     bgIndex: 0,
     phoneImg: ['phop.png', 'phop.png'],
-    info: {
-      avatar: '',
-      carList: [
-        {
-          src: '',
-          info: '蒙迪欧'
-        },
-        {
-          src: 'Car1.png',
-          info: '宝马X6'
-        },
-        {
-          src: '',
-          info: '大众cc 阿斯顿马丁'
-        }
-      ],
-      remark: '热烈欢迎',
-      comInfo: {
-        name: '车咖卡',
-        phone: 15120814794
-      }
-    }
+    info: {}
   },
 
   onShareAppMessage: function (res) {
@@ -58,7 +41,7 @@ Page({
     let startX = e.touches[0].clientX
     this.data.startX = startX
   },
-  touchMove: function(e) {
+  touchMove: function (e) {
     let startX = this.data.startX
     let endX = e.touches[0].clientX
     let moveX = endX - startX
@@ -94,17 +77,33 @@ Page({
       url: '/HomePage/ZhaoCar/ZhaoCar',
     })
   },
+  myShare: function () {
+    wx.navigateTo({
+      url: '/HomePage/apply/apply',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // wx.showShareMenu({
-    //   withShareTicket: true
-    // })
+    const that = this
+    let shareData = {
+      a: 'getShareInfo',
+      input: {
+        company_no: companyNo
+      }
+    }
 
-    wx.request({
-      url: 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=getShareInfo& input={"company_no":"tkpqoa1444904442"}',
+    wc.get(shareData, (json) => {
+      if (json[code] === success) {
+        that.setData({
+          'info.lgSrc': !!json[data].lg_src ? imgUrl + json[data].lg_src : '',
+          'info.carList': json[data].car_list,
+          'info.remark': json[data].remark,
+          'info.companyInfo': json[data].company_info
+        })
+      }
     })
   },
 
