@@ -45,17 +45,15 @@ Page({
         desc: '联系电话',
         holder: '限制至多11位数字*必填',
         Type: 'number'
-      },
-      {
-        name: 'attribution',
-        desc: '公司归属地',
-        holder: '例如：三亚 *必填',
-        Type: 'text'
       }
-    ]
+    ],
+    array: ['请选择公司归属地', '海口', '三亚'],
+    arrayIndex: 0
   },
   register: function (e) {
+    let thisData = this.data
     let formData = e.detail.value
+    formData.attribution = thisData.array[thisData.arrayIndex]
     let registerData = {
       a: 'register',
       input: formData
@@ -66,6 +64,10 @@ Page({
         return
       }
     }
+    if (parseInt(thisData.arrayIndex) < 1) {
+      wc.showModal(thisData.array[0])
+      return
+    }
     if (formData.password !== formData.confirmPassword) {
       wc.showModal('密码与确认密码不一致')
       return
@@ -73,6 +75,11 @@ Page({
 
     wc.get(registerData, (json) => {
 
+    })
+  },
+  changeAttr: function (e) {
+    this.setData({
+      arrayIndex: e.detail.value
     })
   },
 

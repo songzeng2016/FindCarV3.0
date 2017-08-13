@@ -30,9 +30,6 @@ OBJ_PAGE_DATA['onLoad'] = function () {
       })
     }
   })
-  // wx.request({
-  //   url: 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=getMyCar& input={"company_no":"tkpqoa1444904442"}',
-  // })
 }
 OBJ_PAGE_DATA['onShow'] = function () {
   // onLoad: function () {

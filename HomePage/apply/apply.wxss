@@ -36,3 +36,8 @@ page {
   font-size: 24rpx;
   color: #fff;
 }
+
+.list .attribution {
+  width: 450rpx;
+  font-size: 28rpx;
+}

@@ -17,7 +17,7 @@
       <text class="info">{{subItem.carname}}</text>
     </view>
     <view class="remark-wrapper">
-      <text>备注:</text>
+      <text>备注：</text>
       <text>{{item.remark || ''}}</text>
     </view>
     <view class="info-wrapper">
