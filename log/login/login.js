@@ -6,7 +6,7 @@ Page({
   // 事件处理函数
   gotoRegisterTap: function () {
     wx.navigateTo({
-      url: '../registered/registered'
+      url: '/HomePage/apply/apply'
     })
   },
   login: function (e) {
