@@ -45,7 +45,7 @@ Page({
     let startX = this.data.startX
     let endX = e.touches[0].clientX
     let moveX = endX - startX
-    console.log(moveX)
+
     this.setData({
       scrollLeft: -moveX
     })

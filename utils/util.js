@@ -15,6 +15,7 @@ class wc {
   }
 
   get(data, success) {
+    this.showLoading()
     wx.request({
       url: this.host,
       data: this.extend(M, data || {}),
@@ -22,7 +23,9 @@ class wc {
         typeof (success) === 'function' && success(res.data)
       },
       complete: (res) => {
-        if (res.data[this.code] !== this.success) {
+        console.log(res.data)
+        this.hideLoding()
+        if (res.data[this.code] !== this.success && res.data[this.code] !== parseInt(this.success)) {
           this.showModal(res.data[this.message])
         }
       }
@@ -40,7 +43,7 @@ class wc {
     wx.hideLoading()
   }
 
-  showModal(content, showCancel, title) {
+  showModal(content, success, showCancel, title) {
     wx.showModal({
       title: title || '提示',
       content: content || '',
@@ -49,7 +52,11 @@ class wc {
       cancelColor: '',
       confirmText: '',
       confirmColor: '',
-      success: function (res) { },
+      success: function (res) {
+        if (!!success && res.confirm && typeof (success) === 'function') {
+          success()
+        }
+      },
       fail: function (res) { },
       complete: function (res) { },
     })

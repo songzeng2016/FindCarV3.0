@@ -17,7 +17,7 @@ Page({
       wc.showModal('请输入完整信息')
       return;
     }
-    wc.showLoading()
+    
     let loginData = {
       a: 'login',
       input: {
@@ -25,15 +25,8 @@ Page({
         password: password
       }
     }
-    // let loginData = {
-    //   a: 'login',
-    //   input: {
-    //     account: 'test3',
-    //     password: '123456'
-    //   }
-    // }
+
     wc.get(loginData, (json) => {
-      wc.hideLoding()
       if (json[code] === success) {
         app.companyNo = json[data].company_no
         wx.switchTab({

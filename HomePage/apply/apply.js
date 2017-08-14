@@ -74,7 +74,13 @@ Page({
     }
 
     wc.get(registerData, (json) => {
-
+      if (json[code] === parseInt(success)) {
+        wc.showModal('注册成功', () => {
+          wx.navigateBack({
+            delta: 1
+          })
+        })
+      }
     })
   },
   changeAttr: function (e) {

@@ -5,13 +5,13 @@
     <!--表单第一行  用户手机号-->
     <view class="row">
       <image class="icon" src="../icon/user.png"></image>
-      <input name="phone" placeholder="请输入手机号" placeholder-class="input-placeholder" bindinput="getMobileTap" type="number" value="{{mobile}}" maxlength="11" />
+      <input name="phone" placeholder="请输入账号" placeholder-class="input-placeholder" type="text" value="{{mobile}}" />
     </view>
     <view class="line"></view>
     <!--表单第二行  用户密码-->
     <view class="row">
       <image class="icon" src="../icon/psw.png"></image>
-      <input name="password" placeholder="确认密码" placeholder-class="input-placeholder" bindinput="getPSWTap" password value="{{password}}" />
+      <input name="password" placeholder="确认密码" placeholder-class="input-placeholder"  password value="{{password}}" />
     </view>
   </view>
   <!--免费注册文字-->
