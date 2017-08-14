@@ -21,15 +21,16 @@ Page({
           'lgSrc': tempFilePaths
         })
         wx.uploadFile({
-          url: 'http://demo.icarplus.net/api.php',
+          url: 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=addLogo',
           filePath: tempFilePaths,
-          name: 'dataurl',
+          name: 'lg_img',
           formData: {
             m: 'ApiFindCar',
             a: 'addLogo',
-            input: {
-              company_no: companyNo
-            }
+            input: JSON.stringify({
+              company_no: companyNo,
+              lg_img: tempFilePaths
+            })
           },
           success: (res) => {
             console.log(res)
