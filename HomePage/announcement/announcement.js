@@ -1,5 +1,6 @@
 const app = getApp()
-const { wc, companyNo } = app
+const { wc } = app
+let { companyNo } = app
 const { imgUrl, data, code, success } = wc
 
 // var app = getApp()
@@ -15,6 +16,13 @@ OBJ_PAGE_DATA.data.headImageUrl = '../icon/my.jpg'
 
 // 编辑公告信息
 OBJ_PAGE_DATA['onLoad'] = function () {
+  companyNo = app.companyNo
+  if (!companyNo.length) {
+    wx.redirectTo({
+      url: '/log/login/login',
+    })
+    return
+  }
   const that = this
   let getMyCarData = {
     a: 'getMyCar',
@@ -25,12 +33,33 @@ OBJ_PAGE_DATA['onLoad'] = function () {
 
   wc.get(getMyCarData, (json) => {
     if (json[code] === success) {
+      wx.stopPullDownRefresh()
       that.setData({
         myInfo: json[data]
       })
     }
   })
 }
+// 编辑公告信息
+OBJ_PAGE_DATA['onPullDownRefresh'] = function () {
+  const that = this
+  let getMyCarData = {
+    a: 'getMyCar',
+    input: {
+      company_no: companyNo
+    }
+  }
+
+  wc.get(getMyCarData, (json) => {
+    if (json[code] === success) {
+      wx.stopPullDownRefresh()
+      that.setData({
+        myInfo: json[data]
+      })
+    }
+  })
+}
+
 OBJ_PAGE_DATA['onShow'] = function () {
   // onLoad: function () {
   // console.log('onLoad')

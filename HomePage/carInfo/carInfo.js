@@ -1,6 +1,7 @@
 // HomePage/carInfo/carInfo.js
 const app = getApp()
-const { wc, companyNo } = app
+const { wc } = app
+let { companyNo } = app
 const { imgUrl, data, code, success } = wc
 
 Page({
@@ -39,11 +40,11 @@ Page({
       })
     }
 
-    wc.get(changeCarData)
-
-    console.log(changeCarData)
-
-    // 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=changeCar&input={"company_no":"tkpqoa1444904442","maxrow":"3","carname_1":"14年凯美瑞黑色","carname_2":"2015款丰田新款卡罗拉","carname_3":"2016mini敞篷","car_img_1":"car_2.png","car_img_3":"car_5.png","remark":"欢迎来租"}'
+    wc.get(changeCarData, (json) => {
+      if(json[code] === success) {
+        wc.showModal('修改成功')
+      }
+    })
 
   },
   carNameInput: function (e) {
@@ -102,6 +103,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    companyNo = app.companyNo
     const that = this
     let getMyCarData = {
       a: 'getMyCar',

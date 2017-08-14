@@ -8,7 +8,8 @@
 // var dianHua = ''
 
 const app = getApp()
-const { wc, companyNo } = app
+const { wc } = app
+let { companyNo } = app
 const { imgUrl, data, code, success } = wc
 
 Page({
@@ -28,6 +29,7 @@ Page({
   },
 
   onLoad: function () {
+    companyNo = app.companyNo
     const that = this
     let showCarData = {
       a: 'getShowCar',

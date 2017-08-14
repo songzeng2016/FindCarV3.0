@@ -1,6 +1,7 @@
 // HomePage/shareInfo/shareInfo.js
 const app = getApp()
-const { wc, companyNo } = app
+const { wc } = app
+let { companyNo } = app
 const { imgUrl, data, code, success } = wc
 
 Page({
@@ -15,16 +16,13 @@ Page({
     info: {}
   },
 
-  onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
+  onShareAppMessage: function () {
     return {
-      title: '自定义转发标题',
-      path: '/page/user?id=123',
+      title: '我的车源',
+      path: '/HomePage/shareInfo/sharInfo?companyNo=' + companyNo,
       success: function (res) {
         // 转发成功
+        console.log(res)
       },
       fail: function (res) {
         // 转发失败
@@ -87,6 +85,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    companyNo = app.companyNo
+    if (!!options.companyNo) {
+      companyNo = options.companyNo
+      // app.companyNo = companyNo
+    }
+    console.log(companyNo)
     const that = this
     let shareData = {
       a: 'getShareInfo',
@@ -94,6 +99,7 @@ Page({
         company_no: companyNo
       }
     }
+    console.log(shareData)
 
     wc.get(shareData, (json) => {
       if (json[code] === success) {

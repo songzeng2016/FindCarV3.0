@@ -1,7 +1,8 @@
 // HomePage/ownInfo/ownInfo.js
 const app = getApp()
-const { wc, companyNo } = app
-const { imgUrl, data, code, success } = wc
+const { wc } = app
+let { companyNo } = app
+const { imgUrl, host, data, code, success } = wc
 
 Page({
 
@@ -21,7 +22,7 @@ Page({
           'lgSrc': tempFilePaths
         })
         wx.uploadFile({
-          url: 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=addLogo',
+          url: `${host}?m=ApiFindCar&a=addLogo`,
           filePath: tempFilePaths,
           name: 'lg_img',
           formData: {
@@ -41,12 +42,12 @@ Page({
   },
   submitCompanyInfo: function (e) {
     let formData = e.detail.value
-    for (let i in formData) {
-      if (!formData[i]) {
-        wc.showModal('请输入完整参数')
-        return
-      }
-    }
+    // for (let i in formData) {
+    //   if (!formData[i]) {
+    //     wc.showModal('请输入完整参数')
+    //     return
+    //   }
+    // }
     let submitData = {
       a: 'changeCompanyInfo',
       input: wc.extend(formData, {
@@ -63,6 +64,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    companyNo = app.companyNo
     const that = this
     let companyData = {
       a: 'getCompanyInfo',
