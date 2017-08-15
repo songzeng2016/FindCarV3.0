@@ -41,8 +41,13 @@ Page({
     }
 
     wc.get(changeCarData, (json) => {
-      if(json[code] === success) {
-        wc.showModal('修改成功')
+      if (json[code] === success) {
+        setTimeout(() => {
+          wc.showToast(['保存成功'])
+        }, 100)
+        setTimeout(() => {
+          wc.navigateBack()
+        }, 1300)
       }
     })
 

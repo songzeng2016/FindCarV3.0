@@ -32,6 +32,20 @@ class wc {
     })
   }
 
+  navigateBack(delta) {
+    wx.navigateBack({
+      delta: delta || 1
+    })
+  }
+
+  showToast([title = '提示', icon = 'success', duration = 2000]) {
+    wx.showToast({
+      title,
+      icon:
+      duration
+    })
+  }
+
   showLoading() {
     wx.showLoading({
       title: 'loading',

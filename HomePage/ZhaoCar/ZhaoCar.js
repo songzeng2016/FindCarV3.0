@@ -14,11 +14,35 @@ const { imgUrl, data, code, success } = wc
 
 Page({
   data: {
+    pagenum: 0
     // wxSearchData:{
     //   view:{
     //     isShow: true
     //   }
     // }
+  },
+  onPullDownRefresh: function () {
+    this.onLoad()
+    this.setData({
+      searchValue: '',
+      pagenum: 0
+    })
+  },
+  onReachBottom: function () {
+    let searchValue = this.data.searchValue
+    this.getList([searchValue, ++this.data.pagenum])
+  },
+  wxSearchFn: function () {
+    let searchValue = this.data.searchValue
+    this.getList([searchValue])
+    this.setData({
+      pagenum: 0
+    })
+  },
+  wxSearchInput: function (e) {
+    this.setData({
+      searchValue: e.detail.value
+    })
   },
 
   makePhone: function (e) {
@@ -28,14 +52,13 @@ Page({
     })
   },
 
-  onLoad: function () {
-    companyNo = app.companyNo
+  getList: function ([carname = '', pagenum = 0]) {
     const that = this
     let showCarData = {
       a: 'getShowCar',
       input: {
-        pagenum: 0,
-        company_no: companyNo
+        pagenum,
+        carname,
       }
     }
 
@@ -53,11 +76,10 @@ Page({
         })
       }
     })
-
-    // wx.request({
-    //   url: 'http://demo.icarplus.net/api.php?m=ApiFindCar&a=getShowCar&input={"pagenum":"0","carname":"别克"}',
-    // })
-
+  },
+  onLoad: function () {
+    companyNo = app.companyNo
+    this.getList([])
 
     //初始化的时候渲染wxSearchdata
     // WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);

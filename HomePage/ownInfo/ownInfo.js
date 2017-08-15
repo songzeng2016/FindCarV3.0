@@ -34,7 +34,6 @@ Page({
             })
           },
           success: (res) => {
-            console.log(res)
           }
         })
       },
@@ -56,7 +55,14 @@ Page({
     }
 
     wc.get(submitData, (json) => {
-
+      if (json[code] === parseInt(success)) {
+        setTimeout(() => {
+          wc.showToast(['保存成功'])
+        }, 100)
+        setTimeout(() => {
+          wc.navigateBack()
+        }, 1300)
+      }
     })
   },
 

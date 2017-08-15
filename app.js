@@ -30,5 +30,5 @@ App({
     userInfo:null
   },
   wc: new wc(),
-  companyNo: ''
+  companyNo: 'wyfghl1498008482'
 })
