@@ -23,7 +23,7 @@
     <view class="info-list">
       <image class="icon" src="../icon/beiPhone.png"></image>
       <text class="desc">备用电话：</text>
-      <input class="info" name="phone2" value="{{companyInfo.phone2}}" type="number" placeholder="请输入备用电话" placeholder-style="font-weight: normal;" />
+      <input class="info" name="phone_2" value="{{companyInfo.phone_2}}" type="number" placeholder="请输入备用电话" placeholder-style="font-weight: normal;" />
     </view>
   </view>
 
