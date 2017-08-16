@@ -54,6 +54,7 @@ Page({
 
   getList: function ([carname = '', pagenum = 0]) {
     const that = this
+    let carList = this.data.carList || []
     let showCarData = {
       a: 'getShowCar',
       input: {
@@ -70,9 +71,12 @@ Page({
               json[data].carlist[i].carsinfo[j].car_img = imgUrl + json[data].carlist[i].carsinfo[j].car_img
             }
           }
+          if (pagenum > 0) {
+            carList.push(json[data].carlist[i])
+          }
         }
         that.setData({
-          carList: json[data].carlist
+          carList: pagenum > 0 ? carList : json[data].carlist
         })
       }
     })
