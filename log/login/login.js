@@ -17,7 +17,7 @@ Page({
       wc.showModal('请输入完整信息')
       return;
     }
-    
+
     let loginData = {
       a: 'login',
       input: {
@@ -32,6 +32,8 @@ Page({
         wx.switchTab({
           url: '/HomePage/ZhaoCar/ZhaoCar'
         })
+      } else {
+        wc.showToast(['登录失败', 'loading', 3000])
       }
     })
 

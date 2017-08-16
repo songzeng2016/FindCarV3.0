@@ -20,14 +20,18 @@ class wc {
       url: this.host,
       data: this.extend(M, data || {}),
       success: (res) => {
+        // this.hideLoding()
         typeof (success) === 'function' && success(res.data)
       },
       complete: (res) => {
         console.log(res.data)
-        this.hideLoding()
-        if (res.data[this.code] !== this.success && res.data[this.code] !== parseInt(this.success)) {
-          this.showModal(res.data[this.message])
+        if (res.data[this.code] === this.success || res.data[this.code] === parseInt(this.success)) {
+          this.hideLoding()
         }
+
+        // if (res.data[this.code] !== this.success && res.data[this.code] !== parseInt(this.success)) {
+        //   this.showModal(res.data[this.message])
+        // }
       }
     })
   }
@@ -41,7 +45,7 @@ class wc {
   showToast([title = '提示', icon = 'success', duration = 2000]) {
     wx.showToast({
       title,
-      icon:
+      icon,
       duration
     })
   }

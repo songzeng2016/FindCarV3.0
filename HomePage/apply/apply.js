@@ -80,6 +80,8 @@ Page({
             delta: 1
           })
         })
+      } else {
+        wc.showToast(['注册失败', 'loading', 3000])
       }
     })
   },

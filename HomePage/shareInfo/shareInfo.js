@@ -109,6 +109,8 @@ Page({
           'info.remark': json[data].remark,
           'info.companyInfo': json[data].company_info
         })
+      } else {
+        wc.showToast(['请求失败', 'loading'])
       }
     })
   },

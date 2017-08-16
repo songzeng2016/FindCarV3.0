@@ -62,6 +62,8 @@ Page({
         setTimeout(() => {
           wc.navigateBack()
         }, 1300)
+      } else {
+        wc.showToast(['保存失败', 'loading'])
       }
     })
   },
@@ -85,6 +87,8 @@ Page({
           companyInfo: json[data].company_info,
           lgSrc: !!json[data].lg_src ? imgUrl + json[data].lg_src : ''
         })
+      } else {
+        wc.showToast(['请求失败', 'loading'])
       }
     })
   },

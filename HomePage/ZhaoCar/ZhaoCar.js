@@ -78,6 +78,10 @@ Page({
         that.setData({
           carList: pagenum > 0 ? carList : json[data].carlist
         })
+      } else if (json[code] === '30003') {
+        wc.showToast(['数据已全部加载'])
+      } else {
+        wc.showToast(['操作失败', 'loading'])
       }
     })
   },

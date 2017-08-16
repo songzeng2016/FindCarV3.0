@@ -47,7 +47,9 @@ Page({
         }, 100)
         setTimeout(() => {
           wc.navigateBack()
-        }, 1300)
+        }, 2000)
+      } else {
+        wc.showToast(['保存失败', 'loading'])
       }
     })
 
@@ -128,6 +130,8 @@ Page({
           carInfo: json[data].car_list,
           remark: json[data].remark
         })
+      } else {
+        wc.showToast(['请求失败', 'loading'])
       }
     })
   },

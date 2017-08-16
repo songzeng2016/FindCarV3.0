@@ -37,6 +37,8 @@ OBJ_PAGE_DATA['onLoad'] = function () {
       that.setData({
         myInfo: json[data]
       })
+    } else {
+      wc.showToast(['请求失败', 'loading'])
     }
   })
 }
@@ -56,6 +58,8 @@ OBJ_PAGE_DATA['onPullDownRefresh'] = function () {
       that.setData({
         myInfo: json[data]
       })
+    } else {
+      wc.showToast(['请求失败', 'loading'])
     }
   })
 }
