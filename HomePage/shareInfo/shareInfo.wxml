@@ -20,7 +20,7 @@
     <view class="phone-wrapper {{'phone-wrapper' + bgIndex}}">
       <text class="{{'desc' + bgIndex}}">预定电话：</text>
       <text class="{{'phone' + bgIndex}}">{{info.companyInfo.phone}}</text>
-      <image class="phoneImg" src="{{'/Images/' + phoneImg[bgIndex]}}" catchtap="makePhone" data-phone="{{info.comInfo.phone}}"></image>
+      <image class="phoneImg" src="{{'/Images/' + phoneImg[bgIndex]}}" catchtap="makePhone" data-phone="{{info.companyInfo.phone}}"></image>
     </view>
     <view class="name {{'name' + bgIndex}}">{{info.companyInfo.name}}</view>
     <view class="link {{'link' + bgIndex}}">

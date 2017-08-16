@@ -25,7 +25,7 @@
       <view class="phone-wrapper">
         <text class="desc">电话:</text>
         <text class="number">{{item.phone}}</text>
-        <image class="icon" src="/Images/phop.png" bindtap="makePhone" data-phone="{{item.comInfo.phone}}"></image> 
+        <image class="icon" src="/Images/phop.png" bindtap="makePhone" data-phone="{{item.phone}}"></image> 
       </view>
     </view>
   </view>
