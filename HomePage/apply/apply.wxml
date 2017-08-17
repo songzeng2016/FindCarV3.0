@@ -2,7 +2,7 @@
 <form class="list-wrapper" bindsubmit="register">
   <view class="list" wx:for="{{list}}" wx:key="this">
     <text class="desc">{{item.desc}}</text>
-    <input class="input" name="{{item.name}}" type="{{item.Type || 'text'}}" placeholder="{{item.holder}}" />
+    <input class="input" name="{{item.name}}" type="{{item.Type || 'text'}}" maxlength="{{item.maxLength || 100}}" placeholder="{{item.holder}}" />
   </view>
   <view class="list">
     <text class="desc">公司归属地</text>

@@ -44,7 +44,8 @@ Page({
         name: 'phone',
         desc: '联系电话',
         holder: '限制至多11位数字*必填',
-        Type: 'number'
+        Type: 'number',
+        maxLength: 11
       }
     ],
     array: ['请选择公司归属地', '海口', '三亚'],
@@ -72,14 +73,21 @@ Page({
       wc.showModal('密码与确认密码不一致')
       return
     }
+    if (formData.phone.length !== 11) {
+      wc.showModal('请输入11位长度的手机号码')
+      return
+    }
 
     wc.get(registerData, (json) => {
       if (json[code] === parseInt(success)) {
-        wc.showModal('注册成功', () => {
-          wx.navigateBack({
-            delta: 1
+        setTimeout(() => {
+          wc.showToast(['注册成功'])
+        }, 100)
+        setTimeout(() => {
+          wx.navigateTo({
+            url: '/log/login/login',
           })
-        })
+        }, 2100)
       } else {
         wc.showToast(['注册失败', 'loading', 3000])
       }

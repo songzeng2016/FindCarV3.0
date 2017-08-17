@@ -93,6 +93,9 @@ Page({
     // WxSearch.init(that, 43, ['weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification']);
     // WxSearch.initMindKeys(['weappdev.com', '微信小程序开发', '微信开发', '微信小程序']);
   },
+  onShow: function () {
+    this.getList([])
+  },
   // wxSearchFn: function (e) {
   //   var that = this
   //   WxSearch.wxSearchAddHisKey(that);

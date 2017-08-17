@@ -15,7 +15,7 @@ OBJ_PAGE_DATA.data = {}
 OBJ_PAGE_DATA.data.headImageUrl = '../icon/my.jpg'
 
 // 编辑公告信息
-OBJ_PAGE_DATA['onLoad'] = function () {
+OBJ_PAGE_DATA['onShow'] = function () {
   companyNo = app.companyNo
   if (!companyNo.length) {
     wx.redirectTo({
@@ -64,7 +64,7 @@ OBJ_PAGE_DATA['onPullDownRefresh'] = function () {
   })
 }
 
-OBJ_PAGE_DATA['onShow'] = function () {
+// OBJ_PAGE_DATA['onShow'] = function () {
   // onLoad: function () {
   // console.log('onLoad')
   // var that = this
@@ -82,7 +82,7 @@ OBJ_PAGE_DATA['onShow'] = function () {
   //   })
   // })
 
-}
+// }
 // 编辑公告信息
 OBJ_PAGE_DATA['long'] = function () {
   wx.navigateTo({
