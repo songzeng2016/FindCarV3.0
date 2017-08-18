@@ -81,7 +81,7 @@ Page({
     wc.get(registerData, (json) => {
       if (json[code] === parseInt(success)) {
         setTimeout(() => {
-          wc.showToast(['注册成功'])
+          wc.showToast(['注册成功，待审核'])
         }, 100)
         setTimeout(() => {
           wx.navigateTo({
