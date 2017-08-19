@@ -16,19 +16,6 @@ Page({
     info: {}
   },
 
-  onShareAppMessage: function () {
-    return {
-      title: '我的车源',
-      path: '/HomePage/shareInfo/sharInfo?companyNo=' + companyNo,
-      success: function (res) {
-        // 转发成功
-        console.log(res)
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
-  },
   makePhone: function (e) {
     let phone = e.currentTarget.dataset.phone.toString()
     wx.makePhoneCall({
@@ -85,13 +72,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     companyNo = app.companyNo
     if (!!options.companyNo) {
       companyNo = options.companyNo
-      // app.companyNo = companyNo
     }
-    console.log(companyNo)
+
     const that = this
     let shareData = {
       a: 'getShareInfo',
@@ -99,7 +84,6 @@ Page({
         company_no: companyNo
       }
     }
-    console.log(shareData)
 
     wc.get(shareData, (json) => {
       if (json[code] === success) {
@@ -161,6 +145,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '我的车源',
+      path: '/HomePage/shareInfo/shareInfo?companyNo=' + companyNo,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })
